@@ -26,6 +26,46 @@ Gzhu-campus-skill/
     └── rules.md                      # 学生手册 37 项制度全文
 ```
 
+## 在 AI 编码工具中安装
+
+本 Skill 遵循 [Agent Skills](https://agentskills.io) 开放标准，适用于 OpenCode、Claude Code、Codex、Cursor 等 40+ AI 工具。安装时目标文件夹名请使用 `gzhu-campus`（与 `SKILL.md` 中的 `name` 保持一致）。
+
+### 方式一：一条命令装到所有工具（推荐）
+
+需要 Node.js。CLI 会自动检测已安装的 AI 工具并一次性装好：
+
+```bash
+npx skills add https://github.com/Henry-pigg/Gzhu-campus-skill
+```
+
+### 方式二：手动安装到单个工具
+
+**OpenCode**（全局，所有项目可用）
+
+```bash
+git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.config/opencode/skills/gzhu-campus
+```
+
+项目级：`.opencode/skills/gzhu-campus`。OpenCode 也兼容读取 `.claude/skills` 目录。
+
+**Claude Code**（个人级，所有项目可用）
+
+```bash
+git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.claude/skills/gzhu-campus
+```
+
+项目级：`.claude/skills/gzhu-campus`，提交到仓库即可团队共享。
+
+**Codex**（用户级）
+
+```bash
+git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-campus
+```
+
+装完后重启 Codex 生效（也可以在 Codex 中用内置的 `$skill-installer` 从该仓库安装）。
+
+安装后直接在工具中提问广州大学相关问题即可自动触发；Claude Code 中也可用 `/gzhu-campus` 手动调用。
+
 ## 使用方式
 
 作为 AI Agent Skill 使用时，回答流程：
