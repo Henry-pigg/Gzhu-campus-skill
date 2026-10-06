@@ -18,11 +18,14 @@
 ```
 Gzhu-campus-skill/
 ├── SKILL.md                          # Skill 主文件：回答流程、领域导航、时效警示
+├── scripts/
+│   └── gzhu-credential.ps1           # Windows DPAPI 加密凭证存取脚本（仅 Windows）
 └── references/                       # 知识库参考文件
     ├── academics.md                  # 机电与电气工程学院培养方案（5 个专业）
     ├── calendar.md                   # 2026-2027 学年校历
     ├── campus_knowledge.md           # 生活服务 / 地图交通 / 服务入口 / 学生经验
     ├── leave.md                      # 请假与假期离校报备流程
+    ├── portal-login.md               # 数字广大/教务系统自动登录操作手册
     └── rules.md                      # 学生手册 37 项制度全文
 ```
 
@@ -75,6 +78,16 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 3. **标注信息性质**：如实传递信息标签——官方已查证 / 地图数据 / 学生经验（一方说法，需交叉验证）/ 待补充。
 4. **主动提示时效**：涉及交通线路、营业时间、制度细则时提醒"以官方最新通知为准"。
 
+## 校园门户自动登录（可选，Windows）
+
+需要查个人课表、成绩、GPA、办事进度等校内数据时，本 skill 支持把学号密码用 **Windows DPAPI** 加密后存在本地（`%USERPROFILE%\.gzhu-campus\credentials.enc`），由 AI 通过浏览器自动化（Playwright / Browser Use）登录数字广大（`my.gzhu.edu.cn`）或教务系统（`jwxt.gzhu.edu.cn`）查询。
+
+- 加密文件**不在本仓库目录内**，永远不会被 git 提交或推送到 GitHub。
+- DPAPI 绑定当前 Windows 账户，其他用户/其他机器都解不开；脚本还额外收紧了文件 ACL（仅当前用户可读）。
+- 用法：首次使用时让 AI 用 `scripts/gzhu-credential.ps1 set -StudentId <学号> -Password "<密码>"` 保存；之后 AI 自动 `get` 解密登录；不需要时用 `remove` 一键清除。
+- 安全边界：只查不提交（选课/改密/报名等不可逆操作必须交还给用户）；遇到验证码/二次验证立即交还。
+- 详见 `references/portal-login.md`。
+
 ## 已知时效警示
 
 - **官洲隧道施工**（2026-06-19 起）：大学城 1/3/4 线、B25、夜48 临时取消行经大学城；2026-09-04 小红书帖称大学城公交出行已恢复，恢复状态以公交公司最新公告为准。
@@ -85,6 +98,7 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 
 > 每次更新 references 数据库后在此记录最新日期（最新在上）。
 
+- **2026-10-06**：新增校园门户自动登录能力——`scripts/gzhu-credential.ps1`（Windows DPAPI 加密凭证存取，文件存于用户主目录外）+ `references/portal-login.md`（数字广大/教务系统 CAS 登录操作手册、可查场景与安全边界）；SKILL.md 导航与回答流程同步更新。
 - **2026-10-05**：跨平台补采——小红书（登录后站内模拟点击，4 篇笔记全文 + 搜索页收录）、贴吧（4 帖逐帖打开）、B站（5 个视频）、抖音复核、官方信源交叉验证；在校生实测补采——饭堂 4 个窗口实测价、校园周边 14 个小摊实测（含价目表）、美团拼好饭/闪购真实订单价；微信文章——大学城 14 个外卖取餐点汇总、官方快递"2+5 模式"、2026-2027 第一学期自习室安排。来源清单累计 1–78 号。
 - **2026-10-02**：初始仓库上传（SKILL.md + references 5 个 md + 安装命令）。
 

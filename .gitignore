@@ -1,0 +1,16 @@
+# Local credentials — never commit
+.credentials/
+credentials.enc
+*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temp check files
+*_check.txt
+vc.txt
+push_check.txt
+git_check.txt
