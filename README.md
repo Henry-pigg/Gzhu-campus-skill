@@ -102,7 +102,7 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 
 > 每次更新 references 数据库后在此记录最新日期（最新在上）。
 
-- **2026-10-06**：① 校园门户自动登录能力——Windows（DPAPI）/macOS（Keychain）/Linux（Secret Service）三平台加密凭证脚本 + `references/portal-login.md`；② 融合 [gzhu-campus-knowledge-assistant](https://github.com/3383779675-jpg/gzhu-campus-knowledge-assistant)（MIT）的回答方法论：回答前反问评估（时间/对象/流程）、A/B/C 三层证据规则、`【来源：标题·章节】` 引用格式、人名 `<某同学>` 隐私掩码、空结果不降级；新增 `references/retrieval.md` 检索契约。保持纯 Markdown + Grep，零运行时依赖。
+- **2026-10-06**：① 校园门户自动登录能力——Windows（DPAPI）/macOS（Keychain）/Linux（Secret Service）三平台加密凭证脚本 + `references/portal-login.md`；② 融合 [gzhu-campus-knowledge-assistant](https://github.com/3383779675-jpg/gzhu-campus-knowledge-assistant)（MIT）的回答方法论与官方文档：新增 `references/retrieval.md`（A/B/C 分层/引用/隐私掩码）+ `references/official-docs/`（13 篇官方制度原文：学校章程/毕业论文规范/实习管理/毕业资格审核/学分制/课程修读/选课操作手册/2026 招生简章等）；`academics.md` 末尾追加全校 26 学院本科专业索引。
 - **2026-10-05**：跨平台补采——小红书（登录后站内模拟点击，4 篇笔记全文 + 搜索页收录）、贴吧（4 帖逐帖打开）、B站（5 个视频）、抖音复核、官方信源交叉验证；在校生实测补采——饭堂 4 个窗口实测价、校园周边 14 个小摊实测（含价目表）、美团拼好饭/闪购真实订单价；微信文章——大学城 14 个外卖取餐点汇总、官方快递"2+5 模式"、2026-2027 第一学期自习室安排。来源清单累计 1–78 号。
 - **2026-10-02**：初始仓库上传（SKILL.md + references 5 个 md + 安装命令）。
 
