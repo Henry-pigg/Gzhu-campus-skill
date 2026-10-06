@@ -28,6 +28,7 @@ Gzhu-campus-skill/
     ├── campus_knowledge.md           # 生活服务 / 地图交通 / 服务入口 / 学生经验
     ├── leave.md                      # 请假与假期离校报备流程
     ├── portal-login.md               # 数字广大/教务系统自动登录操作手册
+    ├── retrieval.md                  # 检索契约：A/B/C 证据分层、引用格式、隐私掩码
     └── rules.md                      # 学生手册 37 项制度全文
 ```
 
@@ -101,7 +102,7 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 
 > 每次更新 references 数据库后在此记录最新日期（最新在上）。
 
-- **2026-10-06**：新增校园门户自动登录能力——Windows 用 `scripts/gzhu-credential.ps1`（DPAPI 加密），macOS 用 `scripts/gzhu-credential-mac.sh`（Keychain），均存于用户本机、不进 git；新增 `references/portal-login.md`（数字广大/教务系统 CAS 登录操作手册、可查场景与安全边界）；SKILL.md 导航与回答流程同步更新。
+- **2026-10-06**：① 校园门户自动登录能力——Windows（DPAPI）/macOS（Keychain）/Linux（Secret Service）三平台加密凭证脚本 + `references/portal-login.md`；② 融合 [gzhu-campus-knowledge-assistant](https://github.com/3383779675-jpg/gzhu-campus-knowledge-assistant)（MIT）的回答方法论：回答前反问评估（时间/对象/流程）、A/B/C 三层证据规则、`【来源：标题·章节】` 引用格式、人名 `<某同学>` 隐私掩码、空结果不降级；新增 `references/retrieval.md` 检索契约。保持纯 Markdown + Grep，零运行时依赖。
 - **2026-10-05**：跨平台补采——小红书（登录后站内模拟点击，4 篇笔记全文 + 搜索页收录）、贴吧（4 帖逐帖打开）、B站（5 个视频）、抖音复核、官方信源交叉验证；在校生实测补采——饭堂 4 个窗口实测价、校园周边 14 个小摊实测（含价目表）、美团拼好饭/闪购真实订单价；微信文章——大学城 14 个外卖取餐点汇总、官方快递"2+5 模式"、2026-2027 第一学期自习室安排。来源清单累计 1–78 号。
 - **2026-10-02**：初始仓库上传（SKILL.md + references 5 个 md + 安装命令）。
 
