@@ -53,8 +53,29 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\gzhu-credential.ps1 
 ./scripts/gzhu-credential-mac.sh remove
 ```
 
-> Linux 用户暂未提供专用脚本；可后续用 `keyring`（Secret Service/libsecret）补一个等价实现。
-> 两个脚本的 `get` 输出格式一致，都是一行 JSON：`{"student_id":"...","password":"...","updated_at":"..."}`。AI 读取后把 `student_id` 填到学号框、`password` 填到密码框，**不要**在最终回复里展示。
+### Linux（bash）
+
+脚本：`scripts/gzhu-credential-linux.sh`，使用 Secret Service（GNOME Keyring / KWallet），依赖 `secret-tool`（libsecret），通常桌面版 Linux 已自带。
+
+```bash
+# 首次使用可能需要 chmod +x scripts/gzhu-credential-linux.sh
+# 依赖：Debian/Ubuntu 装 libsecret-tools，Fedora 装 libsecret，Arch 装 libsecret
+
+# 保存
+./scripts/gzhu-credential-linux.sh set "<学号>" "<密码>"
+
+# 读取（输出一行 JSON）
+./scripts/gzhu-credential-linux.sh get
+
+# 查看状态
+./scripts/gzhu-credential-linux.sh status
+
+# 清除
+./scripts/gzhu-credential-linux.sh remove
+```
+
+> Headless 服务器/无 keyring 环境下此脚本会报错退出——这是刻意的，不要回退到明文文件。
+> 三个脚本（Windows / macOS / Linux）的 `get` 输出格式一致，都是一行 JSON：`{"student_id":"...","password":"...","updated_at":"..."}`。AI 读取后把 `student_id` 填到学号框、`password` 填到密码框，**不要**在最终回复里展示。
 
 ## 校内系统入口
 

@@ -20,7 +20,8 @@ Gzhu-campus-skill/
 ├── SKILL.md                          # Skill 主文件：回答流程、领域导航、时效警示
 ├── scripts/
 │   ├── gzhu-credential.ps1           # Windows DPAPI 加密凭证存取脚本
-│   └── gzhu-credential-mac.sh        # macOS Keychain 凭证存取脚本
+│   ├── gzhu-credential-mac.sh        # macOS Keychain 凭证存取脚本
+│   └── gzhu-credential-linux.sh      # Linux Secret Service (libsecret) 凭证脚本
 └── references/                       # 知识库参考文件
     ├── academics.md                  # 机电与电气工程学院培养方案（5 个专业）
     ├── calendar.md                   # 2026-2027 学年校历
@@ -85,6 +86,7 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 
 - **Windows**：用 `scripts/gzhu-credential.ps1`，凭证经 Windows DPAPI 加密存于 `%USERPROFILE%\.gzhu-campus\credentials.enc`。
 - **macOS**：用 `scripts/gzhu-credential-mac.sh`，凭证存于 macOS Keychain（钥匙串），服务名 `gzhu-campus`。
+- **Linux**：用 `scripts/gzhu-credential-linux.sh`，凭证存于 Secret Service（GNOME Keyring / KWallet），依赖 `secret-tool`（libsecret）。
 - 加密存储**不在本仓库目录内**，永远不会被 git 提交或推送到 GitHub；每个用户在自己机器上存自己的凭证，互不相干。
 - 安全边界：只查不提交（选课/改密/报名等不可逆操作必须交还给用户）；遇到验证码/二次验证立即交还。
 - 详见 `references/portal-login.md`。
