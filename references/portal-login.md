@@ -13,7 +13,11 @@
 
 ## 凭证存储与读取脚本
 
-脚本位置：本 skill 目录下 `scripts/gzhu-credential.ps1`（PowerShell 5.1+，Windows）。
+按操作系统选对应脚本（都在本 skill `scripts/` 目录下）：
+
+### Windows（PowerShell 5.1+）
+
+脚本：`scripts/gzhu-credential.ps1`，使用 Windows DPAPI（CurrentUser 范围）加密，存储于 `%USERPROFILE%\.gzhu-campus\credentials.enc`。
 
 ```powershell
 # 保存（用户首次提供学号密码时由 AI 调用）
@@ -29,7 +33,28 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\gzhu-credential.ps1 
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\gzhu-credential.ps1 remove
 ```
 
-`get` 的输出是一行 JSON：`{"student_id":"202xxxxxx","password":"...","updated_at":"2026-10-06T..."}`。AI 读取后把 `student_id` 填到学号框、`password` 填到密码框，**不要**在最终回复里展示。
+### macOS（bash/zsh）
+
+脚本：`scripts/gzhu-credential-mac.sh`，使用 macOS Keychain（钥匙串），服务名 `gzhu-campus`，受 macOS 登录钥匙串保护。
+
+```bash
+# 首次使用可能需要 chmod +x scripts/gzhu-credential-mac.sh
+
+# 保存
+./scripts/gzhu-credential-mac.sh set "<学号>" "<密码>"
+
+# 读取（输出一行 JSON）
+./scripts/gzhu-credential-mac.sh get
+
+# 查看状态
+./scripts/gzhu-credential-mac.sh status
+
+# 清除
+./scripts/gzhu-credential-mac.sh remove
+```
+
+> Linux 用户暂未提供专用脚本；可后续用 `keyring`（Secret Service/libsecret）补一个等价实现。
+> 两个脚本的 `get` 输出格式一致，都是一行 JSON：`{"student_id":"...","password":"...","updated_at":"..."}`。AI 读取后把 `student_id` 填到学号框、`password` 填到密码框，**不要**在最终回复里展示。
 
 ## 校内系统入口
 
