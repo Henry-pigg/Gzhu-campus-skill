@@ -92,11 +92,20 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 - 安全边界：只查不提交（选课/改密/报名等不可逆操作必须交还给用户）；遇到验证码/二次验证立即交还。
 - 详见 `references/portal-login.md`。
 
+## MCP 可选依赖（Playwright / Parallel Search）
+
+本 skill 纯 Markdown 即可运行，但以下场景建议配两个 MCP（很多人没装）：
+
+- **Playwright MCP**（微软官方 `@playwright/mcp`）：校园门户自动登录、真实网页核验需要浏览器自动化
+- **Parallel Search MCP**（Parallel AI 官方，免费免 key）：回答校园最新动态需要联网搜索
+
+安装配置（Claude Desktop / Claude Code / Codex / Cursor 等各客户端）见 **[`MCP-SETUP.md`](MCP-SETUP.md)**，仓库根 `mcp.example.json` 可直接复制使用。
+
 ## 数据库更新日志
 
 > 每次更新 references 数据库后在此记录最新日期（最新在上）。
 
-- **2026-10-07**：选课数据库更新——新增 `references/course_eval.md`（选课评价数据库：2026 版好课推荐/避雷按课程类别整理 + 选课求助高频问答 + 历史选修课攻略 135 门）与 `references/course_selection.md`（教务系统选课操作手册现行版：四种选课行为/退课/课表查询/自主选课与重修报名界面）。数据来源：腾讯文档《2026选课评价表（最新版）》+《选课操作手册》+ 本地《广州大学选修课选课攻略》（.doc）。SKILL.md 导航与检索关键词同步更新。
+- **2026-10-07**：选课数据库更新——新增 `references/course_eval.md`（选课评价数据库：2026 版好课推荐/避雷按课程类别整理 + 选课求助高频问答 + 历史选修课攻略 135 门）与 `references/course_selection.md`（教务系统选课操作手册现行版：四种选课行为/退课/课表查询/自主选课与重修报名界面）。数据来源：腾讯文档《2026选课评价表（最新版）》+《选课操作手册》+ 本地《广州大学选修课选课攻略》（.doc）。SKILL.md 导航与检索关键词同步更新。同日追加：MCP 可选依赖配置——新增 [`MCP-SETUP.md`](MCP-SETUP.md)（Playwright MCP + Parallel Search MCP 各客户端安装指南）与 `mcp.example.json`（一键复制示例）。
 - **2026-10-06**：① 校园门户自动登录能力——Windows（DPAPI）/macOS（Keychain）/Linux（Secret Service）三平台加密凭证脚本 + `references/portal-login.md`；② 融合 [gzhu-campus-knowledge-assistant](https://github.com/3383779675-jpg/gzhu-campus-knowledge-assistant)（MIT）的回答方法论与官方文档：新增 `references/retrieval.md`（A/B/C 分层/引用/隐私掩码）+ `references/official-docs/`（13 篇官方制度原文：学校章程/毕业论文规范/实习管理/毕业资格审核/学分制/课程修读/选课操作手册/2026 招生简章等）；`academics.md` 末尾追加全校 26 学院本科专业索引。
 - **2026-10-05**：跨平台补采——小红书（登录后站内模拟点击，4 篇笔记全文 + 搜索页收录）、贴吧（4 帖逐帖打开）、B站（5 个视频）、抖音复核、官方信源交叉验证；在校生实测补采——饭堂 4 个窗口实测价、校园周边 14 个小摊实测（含价目表）、美团拼好饭/闪购真实订单价；微信文章——大学城 14 个外卖取餐点汇总、官方快递"2+5 模式"、2026-2027 第一学期自习室安排。来源清单累计 1–78 号。
 - **2026-10-02**：初始仓库上传（SKILL.md + references 5 个 md + 安装命令）。
