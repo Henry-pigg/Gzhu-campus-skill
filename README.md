@@ -21,7 +21,12 @@ Gzhu-campus-skill/
 ├── scripts/
 │   ├── gzhu-credential.ps1           # Windows DPAPI 加密凭证存取脚本
 │   ├── gzhu-credential-mac.sh        # macOS Keychain 凭证存取脚本
-│   └── gzhu-credential-linux.sh      # Linux Secret Service (libsecret) 凭证脚本
+│   ├── gzhu-credential-linux.sh      # Linux Secret Service (libsecret) 凭证脚本
+│   ├── search.py                     # 知识库检索器（多关键词 AND/OR + 上下文）
+│   ├── check.py                      # 发布前健康检查（隐私/待补充/格式）
+│   ├── gpa.py                        # 成绩计算器（GPA/加权/绩点分布）
+│   ├── log_update.py                 # README 更新日志自动插入
+│   └── portal.py                     # 校园门户登录 CLI（可选，需 Playwright）
 └── references/                       # 知识库参考文件
     ├── academics.md                  # 机电与电气工程学院培养方案（5 个专业）
     ├── calendar.md                   # 2026-2027 学年校历
@@ -101,10 +106,23 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 
 安装配置（Claude Desktop / Claude Code / Codex / Cursor 等各客户端）见 **[`MCP-SETUP.md`](MCP-SETUP.md)**，仓库根 `mcp.example.json` 可直接复制使用。
 
+## 内置 Python 工具（可选）
+
+`scripts/` 下 5 个工具，**全部零第三方依赖、跨平台**（需 Python 3），各工具 `python scripts/<工具>.py --help` 查看参数：
+
+| 工具 | 用途 |
+|---|---|
+| `search.py` | 知识库检索器：多关键词 AND/OR，输出命中行号 + 上下文窗口 |
+| `check.py` | 发布前健康检查：隐私泄露（手机号/身份证/学号/密钥）、待补充残留、md 结构 |
+| `gpa.py` | 成绩计算器：按《成绩管理规定》第四条算 GPA / 加权成绩 / 绩点分布 |
+| `log_update.py` | 更新日志辅助：自动在 README 更新日志顶部插入"日期+一句话" |
+| `portal.py` | 校园门户登录 CLI（**可选**，需 `pip install playwright`）：自动登录 CAS 查课表/成绩 |
+
 ## 数据库更新日志
 
 > 每次更新 references 数据库后在此记录最新日期（最新在上）。
 
+- **2026-10-09**：新增 5 个 Python 工具脚本（search 检索 / check 隐私检查 / gpa 计算器 / log_update 日志 / portal 门户 CLI）
 - **2026-10-07**：选课数据库（course_eval.md + course_selection.md）+ MCP 配置文档（MCP-SETUP.md + mcp.example.json）
 - **2026-10-06**：三平台加密凭证脚本 + retrieval.md + official-docs 13 篇官方制度 + 26 学院专业索引
 - **2026-10-05**：小红书/贴吧/B站/抖音多平台补采 + 饭堂小摊实测 + 微信文章
