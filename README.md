@@ -28,7 +28,7 @@ Gzhu-campus-skill/
 │   ├── log_update.py                 # README 更新日志自动插入
 │   └── portal.py                     # 校园门户登录 CLI（可选，需 Playwright）
 └── references/                       # 知识库参考文件
-    ├── academics.md                  # 机电与电气工程学院培养方案（5 个专业）
+    ├── academics.md                  # 机械与电气工程学院培养方案（5 个专业）
     ├── calendar.md                   # 2026-2027 学年校历
     ├── campus_knowledge.md           # 生活服务 / 地图交通 / 服务入口 / 学生经验
     ├── leave.md                      # 请假与假期离校报备流程
