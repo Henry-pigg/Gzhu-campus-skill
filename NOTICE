@@ -1,0 +1,18 @@
+# NOTICE
+
+本仓库包含借鉴或衍生自以下开源项目的内容：
+
+## gzhu-campus-knowledge-assistant
+
+- 来源：https://github.com/3383779675-jpg/gzhu-campus-knowledge-assistant
+- 许可证：MIT License
+- 引用内容：
+  - `references/official-docs/` 下的 13 篇广州大学官方制度文档（精选收录原则见该目录 README）
+  - 证据分层（A/B/C）、反问评估、引用格式等方法论（见 `references/retrieval.md`）
+
+根据 MIT 许可证要求，上述内容的再分发需保留原版权声明与许可声明。
+
+---
+
+本仓库自身以 MIT License 发布（见 `LICENSE`）。知识库内容为个人整理的校园信息，
+仅供参考，最终以广州大学官方通知为准。
