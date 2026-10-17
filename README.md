@@ -18,6 +18,8 @@
 ```
 Gzhu-campus-skill/
 ├── SKILL.md                          # Skill 主文件：回答流程、领域导航、时效警示
+├── LICENSE                           # MIT License
+├── NOTICE                            # 上游开源项目署名（MIT）
 ├── scripts/
 │   ├── gzhu-credential.ps1           # Windows DPAPI 加密凭证存取脚本
 │   ├── gzhu-credential-mac.sh        # macOS Keychain 凭证存取脚本
@@ -122,9 +124,12 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 
 > 每次更新 references 数据库后在此记录最新日期（最新在上）。
 
+- **2026-10-17**：修复 portal.py 凭证读取集成（三平台 `get` 动作 + JSON 解析，替换原失效的 `-Read` 调用）；rules.md / campus_knowledge.md 共 17 处个人手机号脱敏（保留办公固话）；新增 LICENSE（MIT）+ NOTICE（上游项目署名）；新增 GitHub Actions 在推送/PR 时自动运行 check.py 与脚本冒烟测试
 - **2026-10-09**：新增 5 个 Python 工具脚本（search 检索 / check 隐私检查 / gpa 计算器 / log_update 日志 / portal 门户 CLI）
 - **2026-10-07**：选课数据库（course_eval.md + course_selection.md）+ MCP 配置文档（MCP-SETUP.md + mcp.example.json）
 - **2026-10-06**：三平台加密凭证脚本 + retrieval.md + official-docs 13 篇官方制度 + 26 学院专业索引
 - **2026-10-05**：小红书/贴吧/B站/抖音多平台补采 + 饭堂小摊实测 + 微信文章
 - **2026-10-02**：初始仓库上传（SKILL.md + references 5 个 md + 安装命令）
 > 本仓库内容为个人整理的校园知识库，仅供参考，最终以广州大学官方通知为准。
+>
+> 本仓库以 [MIT License](LICENSE) 发布；包含衍生自上游开源项目的内容，署名见 [NOTICE](NOTICE)。
