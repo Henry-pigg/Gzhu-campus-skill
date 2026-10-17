@@ -119,7 +119,7 @@ def main():
             continue
         total_files += 1
 
-        rel = os.path.relpath(path)
+        rel = os.path.relpath(path).replace(os.sep, "/")
         if args.list_files:
             print(f"{rel}: {len(file_hits)} 处命中")
             continue
