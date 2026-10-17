@@ -35,6 +35,7 @@ gzhu-campus 校园门户查询 CLI（可选工具，需要 Playwright）
 
 import argparse
 import importlib.util
+import json
 import os
 import subprocess
 import sys
@@ -63,26 +64,62 @@ def check_playwright():
     return True
 
 
+def read_stored_credential():
+    """调用本机凭证脚本读取加密凭证，返回 dict 或 None。
+
+    三个平台的凭证脚本（scripts/gzhu-credential.*）约定一致：
+      - 动作用位置参数 `get`（不是 -Read 之类的开关）
+      - 成功时 stdout 输出一行 JSON:
+        {"student_id":"...","password":"...","updated_at":"..."}
+      - 未存储凭证时退出码非 0
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    if os.name == "nt":
+        script = os.path.join(here, "gzhu-credential.ps1")
+        if not os.path.isfile(script):
+            return None
+        cmd = ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass",
+               "-File", script, "get"]
+    else:
+        script = os.path.join(
+            here,
+            "gzhu-credential-mac.sh" if sys.platform == "darwin" else "gzhu-credential-linux.sh",
+        )
+        if not os.path.isfile(script):
+            return None
+        cmd = ["bash", script, "get"]
+
+    try:
+        out = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    except Exception as e:
+        print(f"[提示] 调用凭证脚本失败（{e}），改为交互输入。", file=sys.stderr)
+        return None
+
+    if out.returncode != 0:
+        # 未存储凭证（退出码 2/3）或脚本报错，都属正常降级，不当作故障
+        print("[提示] 本机未存储加密凭证（或读取失败），改为交互输入。", file=sys.stderr)
+        return None
+
+    line = next((l for l in out.stdout.splitlines() if l.strip()), "")
+    try:
+        data = json.loads(line)
+        if data.get("student_id") and data.get("password"):
+            return data
+    except (ValueError, AttributeError):
+        pass
+    print("[提示] 凭证输出不是预期的 JSON，改为交互输入。", file=sys.stderr)
+    return None
+
+
 def read_credential(user_arg, password_arg):
     """返回 (user, password)。显式参数优先；否则尝试本机加密凭证；再否则交互输入。"""
     user = user_arg
     password = password_arg
     if not user or not password:
-        # 尝试调用现有凭证脚本读取（Windows: gzhu-credential.ps1）
-        script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gzhu-credential.ps1")
-        if os.name == "nt" and os.path.isfile(script):
-            try:
-                out = subprocess.run(
-                    ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", script, "-Read"],
-                    capture_output=True, text=True, timeout=15,
-                )
-                if out.returncode == 0:
-                    lines = [l.strip() for l in out.stdout.splitlines() if l.strip()]
-                    if len(lines) >= 2:
-                        user = user or lines[0]
-                        password = password or lines[1]
-            except Exception:
-                pass
+        stored = read_stored_credential()
+        if stored:
+            user = user or stored.get("student_id")
+            password = password or stored.get("password")
     if not user:
         user = input("学号: ").strip()
     if not password:
