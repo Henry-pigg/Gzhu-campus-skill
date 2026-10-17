@@ -124,7 +124,7 @@ git clone https://github.com/Henry-pigg/Gzhu-campus-skill ~/.codex/skills/gzhu-c
 
 > 每次更新 references 数据库后在此记录最新日期（最新在上）。
 
-- **2026-10-17**：修复 portal.py 凭证读取集成（三平台 `get` 动作 + JSON 解析，替换原失效的 `-Read` 调用）；rules.md / campus_knowledge.md 共 17 处个人手机号脱敏（保留办公固话）；新增 LICENSE（MIT）+ NOTICE（上游项目署名）；新增 GitHub Actions 在推送/PR 时自动运行 check.py 与脚本冒烟测试
+- **2026-10-17**：修复 portal.py 凭证读取集成（三平台 `get` 动作 + JSON 解析，替换原失效的 `-Read` 调用）；search.py Windows 路径显示修复；rules.md / campus_knowledge.md 共 17 处个人手机号脱敏（保留办公固话，check.py 门禁恢复通过）；新增 LICENSE（MIT）+ NOTICE（上游项目署名）
 - **2026-10-09**：新增 5 个 Python 工具脚本（search 检索 / check 隐私检查 / gpa 计算器 / log_update 日志 / portal 门户 CLI）
 - **2026-10-07**：选课数据库（course_eval.md + course_selection.md）+ MCP 配置文档（MCP-SETUP.md + mcp.example.json）
 - **2026-10-06**：三平台加密凭证脚本 + retrieval.md + official-docs 13 篇官方制度 + 26 学院专业索引
